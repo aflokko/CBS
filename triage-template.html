@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inbox Triage</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+
+    --urgent: #dc2626;
+    --urgent-bg: #fef2f2;
+    --urgent-border: #fecaca;
+
+    --respond: #b45309;
+    --respond-bg: #fffbeb;
+    --respond-border: #fde68a;
+
+    --fyi: #0369a1;
+    --fyi-bg: #f0f9ff;
+    --fyi-border: #bae6fd;
+
+    --archive: #64748b;
+    --archive-bg: #f8fafc;
+    --archive-border: #e2e8f0;
+
+    --accent: #4f46e5;
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    font-size: 14px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell { max-width: 1200px; margin: 0 auto; padding: 32px 32px 80px; }
+
+  .page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+  .page-title { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 14px;
+    box-shadow: var(--shadow-md);
+  }
+  h1 { font-size: 20px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .page-sub { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+  .header-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .header-meta-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; justify-content: flex-end; }
+  .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+  .tile {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+    min-width: 0;
+  }
+  .tile::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+  .tile.urgent::before { background: var(--urgent); }
+  .tile.respond::before { background: var(--respond); }
+  .tile.fyi::before { background: var(--fyi); }
+  .tile.archive::before { background: var(--archive); }
+  .tile-label {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+  .tile-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .tile.urgent .tile-dot { background: var(--urgent); }
+  .tile.respond .tile-dot { background: var(--respond); }
+  .tile.fyi .tile-dot { background: var(--fyi); }
+  .tile.archive .tile-dot { background: var(--archive); }
+  .tile-value { font-size: 32px; font-weight: 700; margin-top: 6px; letter-spacing: -0.02em; line-height: 1.1; }
+  .tile-foot { font-size: 12px; color: var(--text-subtle); margin-top: 2px; }
+
+  .section { margin-bottom: 28px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 0 4px; }
+  .section-title {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .section-title.urgent { color: var(--urgent); }
+  .section-title.respond { color: var(--respond); }
+  .section-title.fyi { color: var(--fyi); }
+  .section-title.archive { color: var(--archive); }
+  .section-count {
+    font-size: 12px; font-weight: 500; color: var(--text-muted);
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .section-rule { flex: 1; height: 1px; background: var(--border); }
+
+  .email-list {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  .email-row {
+    display: grid;
+    grid-template-columns: 4px 220px 1fr 120px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    transition: background 0.15s ease;
+  }
+  .email-row:first-child { border-top: none; }
+  .email-row:hover { background: #fafbfc; }
+
+  .accent-bar { width: 4px; }
+  .email-row.urgent .accent-bar { background: var(--urgent); }
+  .email-row.respond .accent-bar { background: var(--respond); }
+  .email-row.fyi .accent-bar { background: var(--fyi); }
+  .email-row.archive .accent-bar { background: var(--archive); }
+
+  .email-row.archive { background: var(--archive-bg); opacity: 0.85; }
+  .email-row.archive:hover { opacity: 1; }
+
+  .sender-cell { padding: 14px 16px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+  .sender-name { font-weight: 600; font-size: 13px; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sender-email { font-size: 12px; color: var(--text-subtle); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .content-cell { padding: 14px 8px 14px 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; }
+  .subject-line { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .subject { font-weight: 500; font-size: 13px; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-shrink: 1; }
+  .category-badge {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 7px; border-radius: 4px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    border: 1px solid;
+  }
+  .category-badge.urgent { color: var(--urgent); background: var(--urgent-bg); border-color: var(--urgent-border); }
+  .category-badge.respond { color: var(--respond); background: var(--respond-bg); border-color: var(--respond-border); }
+  .category-badge.fyi { color: var(--fyi); background: var(--fyi-bg); border-color: var(--fyi-border); }
+  .category-badge.archive { color: var(--archive); background: var(--archive-bg); border-color: var(--archive-border); }
+
+  .reason { font-size: 12.5px; color: var(--text-muted); line-height: 1.45; display: flex; align-items: flex-start; gap: 6px; }
+  .reason::before { content: "↳"; color: var(--text-subtle); flex-shrink: 0; }
+
+  .meta-cell { padding: 14px 16px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 4px; }
+  .timestamp { font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .email-id { font-size: 10px; color: var(--text-subtle); font-family: "SF Mono", Menlo, Consolas, monospace; white-space: nowrap; }
+
+  .empty-section { padding: 24px; text-align: center; color: var(--text-subtle); font-size: 13px; font-style: italic; }
+
+  .footer {
+    margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--text-subtle); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .summary { grid-template-columns: repeat(2, 1fr); }
+    .email-row { grid-template-columns: 4px 1fr; }
+    .meta-cell { padding: 0 16px 14px 20px; align-items: flex-start; flex-direction: row; gap: 12px; }
+    .sender-cell { padding-bottom: 4px; }
+    .content-cell { padding: 0 16px 8px 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <header class="page-header">
+      <div class="page-title">
+        <div class="brand-mark">T</div>
+        <div>
+          <h1>Inbox Triage</h1>
+          <div class="page-sub" id="triageDate"></div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-meta-row">
+          <span id="generatedAt"></span>
+          <span>·</span>
+          <span id="totalReviewed"></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="tile urgent">
+        <div class="tile-label"><span class="tile-dot"></span>Urgent</div>
+        <div class="tile-value" id="urgentCount">0</div>
+        <div class="tile-foot">Needs action today</div>
+      </div>
+      <div class="tile respond">
+        <div class="tile-label"><span class="tile-dot"></span>Respond Today</div>
+        <div class="tile-value" id="respondCount">0</div>
+        <div class="tile-foot">Before end of day</div>
+      </div>
+      <div class="tile fyi">
+        <div class="tile-label"><span class="tile-dot"></span>FYI</div>
+        <div class="tile-value" id="fyiCount">0</div>
+        <div class="tile-foot">Worth knowing</div>
+      </div>
+      <div class="tile archive">
+        <div class="tile-label"><span class="tile-dot"></span>Archive</div>
+        <div class="tile-value" id="archiveCount">0</div>
+        <div class="tile-foot">Safe to skip</div>
+      </div>
+    </section>
+
+    <div id="sections"></div>
+
+    <footer class="footer">
+      <span id="footerLeft"></span>
+      <span id="footerRight"></span>
+    </footer>
+  </div>
+
+  <!--
+    ============================================================================
+    TRIAGE DATA — edit the JSON below to populate the page. Reload after save.
+
+    Schema:
+      triage_date         : string  — header date, e.g. "Wednesday, April 22, 2026"
+      generated_at        : string  — when the triage ran
+      total_count         : number  — total emails reviewed
+      urgent_count        : number  — summary tile value (URGENT)
+      respond_today_count : number  — summary tile value (RESPOND TODAY)
+      fyi_count           : number  — summary tile value (FYI)
+      archive_count       : number  — summary tile value (ARCHIVE)
+      emails[]:
+        email_id    : string  — Gmail id from inbox.json (links back to the inbox UI)
+        from_name   : string
+        from_email  : string
+        subject     : string
+        timestamp   : string  — human-readable, e.g. "Today 8:14 AM" / "Apr 22, 8:14 AM"
+        category    : "URGENT" | "RESPOND TODAY" | "FYI" | "ARCHIVE"
+        reason      : string  — one sentence citing the CLAUDE.md rule that fired
+
+    Rows are grouped by category in this order: URGENT, RESPOND TODAY, FYI, ARCHIVE.
+    Within each group, rows render in the order you list them — put the most
+    time-sensitive items first.
+    ============================================================================
+  -->
+  <script id="triageData" type="application/json">
+{
+  "triage_date": "",
+  "generated_at": "",
+  "total_count": 0,
+  "urgent_count": 0,
+  "respond_today_count": 0,
+  "fyi_count": 0,
+  "archive_count": 0,
+  "emails": []
+}
+  </script>
+
+<script>
+  const CATEGORY_ORDER = [
+    { key: "URGENT",         cls: "urgent",   label: "Urgent" },
+    { key: "RESPOND TODAY",  cls: "respond",  label: "Respond Today" },
+    { key: "FYI",            cls: "fyi",      label: "FYI" },
+    { key: "ARCHIVE",        cls: "archive",  label: "Archive" }
+  ];
+
+  function escape(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c => (
+      {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]
+    ));
+  }
+
+  function render(data) {
+    document.getElementById("triageDate").textContent = data.triage_date || "";
+    document.getElementById("generatedAt").textContent = data.generated_at ? "Generated " + data.generated_at : "";
+    document.getElementById("totalReviewed").textContent = (data.total_count ?? 0) + " emails reviewed";
+    document.getElementById("urgentCount").textContent = data.urgent_count ?? 0;
+    document.getElementById("respondCount").textContent = data.respond_today_count ?? 0;
+    document.getElementById("fyiCount").textContent = data.fyi_count ?? 0;
+    document.getElementById("archiveCount").textContent = data.archive_count ?? 0;
+    document.getElementById("footerLeft").textContent = "Triage generated by Claude";
+    document.getElementById("footerRight").textContent =
+      (data.total_count ?? 0) + " emails" + (data.triage_date ? " · " + data.triage_date : "");
+
+    const emails = Array.isArray(data.emails) ? data.emails : [];
+    const sectionsEl = document.getElementById("sections");
+    sectionsEl.innerHTML = "";
+
+    for (const cat of CATEGORY_ORDER) {
+      const rows = emails.filter(e => (e.category || "").toUpperCase() === cat.key);
+      const section = document.createElement("section");
+      section.className = "section";
+      section.innerHTML = `
+        <div class="section-header">
+          <span class="section-title ${cat.cls}">● ${escape(cat.label)}</span>
+          <span class="section-count">${rows.length}</span>
+          <span class="section-rule"></span>
+        </div>
+        <div class="email-list">
+          ${rows.length === 0
+            ? `<div class="empty-section">Nothing in this category.</div>`
+            : rows.map(e => `
+              <div class="email-row ${cat.cls}">
+                <div class="accent-bar"></div>
+                <div class="sender-cell">
+                  <div class="sender-name">${escape(e.from_name)}</div>
+                  <div class="sender-email">${escape(e.from_email)}</div>
+                </div>
+                <div class="content-cell">
+                  <div class="subject-line">
+                    <span class="subject">${escape(e.subject)}</span>
+                    <span class="category-badge ${cat.cls}">${escape(cat.label)}</span>
+                  </div>
+                  <div class="reason">${escape(e.reason)}</div>
+                </div>
+                <div class="meta-cell">
+                  <div class="timestamp">${escape(e.timestamp)}</div>
+                  <div class="email-id">${escape(e.email_id)}</div>
+                </div>
+              </div>
+            `).join("")}
+        </div>
+      `;
+      sectionsEl.appendChild(section);
+    }
+  }
+
+  try {
+    const raw = document.getElementById("triageData").textContent;
+    render(JSON.parse(raw));
+  } catch (err) {
+    document.getElementById("sections").innerHTML =
+      `<div class="empty-section">Could not parse triage data: ${escape(err.message)}</div>`;
+  }
+</script>
+</body>
+</html>

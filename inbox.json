@@ -1,0 +1,397 @@
+{
+  "account": "achen@hartwellassociates.com",
+  "export_date": "2026-04-22T10:00:00Z",
+  "messages": [
+    {
+      "id": "18c5f2a4b1e09d01",
+      "threadId": "18c5f2a4b1e09d01",
+      "labelIds": ["INBOX", "UNREAD"],
+      "snippet": "Hey, you free for coffee Thursday or Friday? Want to catch up. Either Bluestone or the usual spot works for me...",
+      "historyId": "2847291",
+      "internalDate": "1745308440000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "David Okafor <dokafor@hartwellassociates.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "coffee this week?"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 08:14:00 -0400"},
+          {"name": "Message-ID", "value": "<CAF8x2m9J3k2Lp4qR7sV9wY@hartwellassociates.com>"}
+        ],
+        "body": "Hey,\n\nYou free for coffee Thursday or Friday? Want to catch up. Either Bluestone or the usual spot works for me.\n\nD"
+      }
+    },
+    {
+      "id": "18c5f29b7d3e4a02",
+      "threadId": "18c5f29b7d3e4a02",
+      "labelIds": ["INBOX", "UNREAD", "IMPORTANT", "STARRED"],
+      "snippet": "Alex, we got a notice this morning that the $1.2M wire for our Q1 estimated payment bounced. Treasury is looking into it but the deadline is Friday...",
+      "historyId": "2847285",
+      "internalDate": "1745307720000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Maria Fuentes <mfuentes@acmecorp.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Cc", "value": "Treasury Team <treasury@acmecorp.com>"},
+          {"name": "Subject", "value": "Wire transfer for Q1 estimated payment didn't go through"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 07:42:00 -0400"},
+          {"name": "Message-ID", "value": "<19k3m2p8Q4r6T9v2W5y8@acmecorp.com>"}
+        ],
+        "body": "Alex,\n\nWe got a notice this morning that the $1.2M wire for our Q1 estimated payment bounced. Treasury is looking into it but the deadline is Friday.\n\nCan you get on a call with us today to figure out next steps?\n\nMaria Fuentes\nVP Finance, Acme Corp\n(212) 555-0142"
+      }
+    },
+    {
+      "id": "18c5e8f3c2a71b03",
+      "threadId": "18c5e8f3c2a71b03",
+      "labelIds": ["INBOX", "UNREAD"],
+      "snippet": "Hi Alex, Linda here from Richard's office. Richard asked me to reach out about a lunch with the Hargrove family team sometime next month...",
+      "historyId": "2847210",
+      "internalDate": "1745291400000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Linda Park <lpark@hargrovefamily.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Lunch next month with the Hargrove team?"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 09:30:00 -0400"},
+          {"name": "Message-ID", "value": "<lp-lunch-scheduling-20260422@hargrovefamily.com>"}
+        ],
+        "body": "Hi Alex,\n\nLinda here from Richard's office. Richard asked me to reach out about a lunch with the Hargrove family team sometime next month. He'd love to get everyone together casually before things pick up again in the summer.\n\nA few dates we're floating: May 12, May 15, or May 20. Any of those work on your end?\n\nNo rush, whenever you have a moment.\n\nThanks,\nLinda Park\nExecutive Assistant to Richard Hargrove"
+      }
+    },
+    {
+      "id": "18c5e1d9f7c84c04",
+      "threadId": "18c5e1d9f7c84c04",
+      "labelIds": ["INBOX", "CATEGORY_UPDATES"],
+      "snippet": "Hi team, here is the April edition of the Hartwell internal newsletter. Highlights: three new hires in the audit practice, strong Q1 billable hours across all groups...",
+      "historyId": "2847088",
+      "internalDate": "1745262600000",
+      "payload": {
+        "mimeType": "multipart/alternative",
+        "headers": [
+          {"name": "From", "value": "Hartwell Internal <internal@hartwellassociates.com>"},
+          {"name": "To", "value": "All Staff <allstaff@hartwellassociates.com>"},
+          {"name": "Subject", "value": "April firm newsletter: new hires, Q1 results, summer outing"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 16:30:00 -0400"},
+          {"name": "Message-ID", "value": "<newsletter-apr2026-04@hartwellassociates.com>"}
+        ],
+        "body": "Hi team,\n\nHere is the April edition of the Hartwell internal newsletter.\n\nHighlights:\n- Three new hires in the audit practice (welcome Alex, Sarah, and Thomas)\n- Strong Q1 billable hours across all groups\n- Save the date for the firm summer outing on June 14\n\nFull newsletter attached. Questions or ideas for next month? Reply to this email.\n\nHartwell Communications"
+      }
+    },
+    {
+      "id": "18c5f31a5d92e605",
+      "threadId": "18c5f31a5d92e605",
+      "labelIds": ["INBOX", "UNREAD"],
+      "snippet": "Alex, forwarding along. Let me know. Jen...",
+      "historyId": "2847312",
+      "internalDate": "1745312580000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Jen Morales <jmorales@hartwellassociates.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "fwd: documents"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 09:03:00 -0400"},
+          {"name": "Message-ID", "value": "<jm-fwd-20260422-001@hartwellassociates.com>"}
+        ],
+        "body": "Alex,\n\nForwarding along. Let me know.\n\nJen\n\n---------- Forwarded message ----------\nFrom: Tom Reid <treid@bluestonecap.com>\nSubject: Hargrove_2024_Schedule_K1_final.pdf\n\nJen, please pass this along to Alex when he has a chance.\n\nT"
+      }
+    },
+    {
+      "id": "18c5f2e1c4a07f06",
+      "threadId": "18c5ea7d1b2e4a12",
+      "labelIds": ["INBOX", "UNREAD"],
+      "snippet": "Hi Alex, the draft memo for the Goldstein K-1 treatment is ready. I addressed your comments from Monday on the passive activity loss analysis...",
+      "historyId": "2847298",
+      "internalDate": "1745311300000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Priya Shah <pshah@hartwellassociates.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Draft memo for Goldstein K-1 - ready for your review"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 08:55:00 -0400"},
+          {"name": "In-Reply-To", "value": "<goldstein-k1-draft-001@hartwellassociates.com>"},
+          {"name": "Message-ID", "value": "<goldstein-k1-draft-003@hartwellassociates.com>"}
+        ],
+        "body": "Hi Alex,\n\nThe draft memo for the Goldstein K-1 treatment is ready. I addressed your comments from Monday on the passive activity loss analysis.\n\nFiling deadline is next Wednesday so ideally I'd get your sign-off today or tomorrow.\n\nLink to the doc in Clio: https://hartwell.clio.com/matters/goldstein-2026/memos/k1-treatment-v3\n\nPriya"
+      }
+    },
+    {
+      "id": "18c5dbe2f1b43907",
+      "threadId": "18c5dbe2f1b43907",
+      "labelIds": ["INBOX", "CATEGORY_UPDATES"],
+      "snippet": "Hi board members, a reminder that our April board meeting is this Thursday, April 24 at 6pm at the Midtown office. Agenda attached...",
+      "historyId": "2846997",
+      "internalDate": "1745247600000",
+      "payload": {
+        "mimeType": "multipart/mixed",
+        "headers": [
+          {"name": "From", "value": "NYC Youth Arts Coalition <board@nycyoutharts.org>"},
+          {"name": "To", "value": "Board Members <board-list@nycyoutharts.org>"},
+          {"name": "Subject", "value": "Board meeting reminder: this Thursday, 6pm"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 14:00:00 -0400"},
+          {"name": "List-ID", "value": "<board-list.nycyoutharts.org>"},
+          {"name": "Message-ID", "value": "<board-mtg-apr-reminder@nycyoutharts.org>"}
+        ],
+        "body": "Hi board members,\n\nA reminder that our April board meeting is this Thursday, April 24 at 6pm at the Midtown office.\n\nAgenda attached. Please review the development committee update before the meeting.\n\nLooking forward to seeing everyone.\n\nElena Ruiz\nBoard Chair"
+      }
+    },
+    {
+      "id": "18c5e9a2b8c13d08",
+      "threadId": "18c5e9a2b8c13d08",
+      "labelIds": ["INBOX", "CATEGORY_SOCIAL"],
+      "snippet": "Hi Alex, you have 3 new connection requests waiting for you. See who wants to connect.",
+      "historyId": "2847131",
+      "internalDate": "1745301600000",
+      "payload": {
+        "mimeType": "text/html",
+        "headers": [
+          {"name": "From", "value": "LinkedIn <notifications@linkedin.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "You have 3 new connection requests"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 06:00:00 -0400"},
+          {"name": "List-Unsubscribe", "value": "<https://linkedin.com/unsubscribe>"},
+          {"name": "Message-ID", "value": "<li-notif-connreq-20260422@linkedin.com>"}
+        ],
+        "body": "Hi Alex,\n\nYou have 3 new connection requests waiting for you.\n\nSee who wants to connect on LinkedIn.\n\nYou're receiving Connection notification emails. Unsubscribe here."
+      }
+    },
+    {
+      "id": "18c5e6d4a9f27e09",
+      "threadId": "18c5e6d4a9f27e09",
+      "labelIds": ["INBOX", "UNREAD", "CATEGORY_UPDATES"],
+      "snippet": "You've been added to the Acme Corp - FY2026 Tax Provision matter workspace in ClioVault. Owner: pshah@hartwellassociates.com...",
+      "historyId": "2847054",
+      "internalDate": "1745299800000",
+      "payload": {
+        "mimeType": "text/html",
+        "headers": [
+          {"name": "From", "value": "ClioVault Notifications <no-reply@cliovault.com>"},
+          {"name": "To", "value": "achen@hartwellassociates.com"},
+          {"name": "Subject", "value": "You've been added to a matter: Acme Corp - FY2026 Tax Provision"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 05:30:00 -0400"},
+          {"name": "List-Unsubscribe", "value": "<https://cliovault.com/unsubscribe>"},
+          {"name": "Message-ID", "value": "<cliovault-notif-acme-fy2026-provision@cliovault.com>"}
+        ],
+        "body": "You've been added to a matter workspace.\n\nMatter: Acme Corp - FY2026 Tax Provision\nOwner: pshah@hartwellassociates.com\nRole: Partner (reviewer)\nAdded by: Priya Shah\n\nAccess the workspace: https://hartwell.cliovault.com/matters/acme-fy2026-tax-provision\n\nYou can manage your notification preferences in ClioVault settings. This is an automated message."
+      }
+    },
+    {
+      "id": "18c5f2c8e6b58a10",
+      "threadId": "18c5ea3f2d9c6b04",
+      "labelIds": ["INBOX", "UNREAD", "IMPORTANT"],
+      "snippet": "Alex, when you have a moment could you walk me through the Q1 distribution schedule we finalized? My son has some questions about the generation-skipping allocation...",
+      "historyId": "2847292",
+      "internalDate": "1745310000000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Richard Hargrove <rhargrove@hargrovefamily.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Question on the Q1 distribution schedule"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 08:20:00 -0400"},
+          {"name": "Message-ID", "value": "<rh-q1-dist-20260422@hargrovefamily.com>"}
+        ],
+        "body": "Alex,\n\nWhen you have a moment could you walk me through the Q1 distribution schedule we finalized? My son has some questions about the generation-skipping allocation and I'd like to answer him accurately.\n\nNo huge rush but ideally today.\n\nRichard"
+      }
+    },
+    {
+      "id": "18c5dd71e3a49b11",
+      "threadId": "18c5dd71e3a49b11",
+      "labelIds": ["INBOX", "CATEGORY_PROMOTIONS"],
+      "snippet": "Register by Friday to save $400 on the 2026 Tax Strategies Summit. Three days of advanced content, CPE credits, and networking...",
+      "historyId": "2847015",
+      "internalDate": "1745240100000",
+      "payload": {
+        "mimeType": "text/html",
+        "headers": [
+          {"name": "From", "value": "AICPA Conferences <events@aicpa-conferences.org>"},
+          {"name": "To", "value": "achen@hartwellassociates.com"},
+          {"name": "Subject", "value": "Early bird pricing ends Friday: Tax Strategies Summit 2026"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 11:15:00 -0400"},
+          {"name": "List-Unsubscribe", "value": "<https://aicpa-conferences.org/unsubscribe>"},
+          {"name": "Message-ID", "value": "<tss2026-earlybird@aicpa-conferences.org>"}
+        ],
+        "body": "Register by Friday to save $400 on the 2026 Tax Strategies Summit.\n\nThree days of advanced content, CPE credits, and networking with top tax professionals.\n\nUse code EARLY26 at checkout.\n\nRegister now: https://aicpa-conferences.org/tss2026"
+      }
+    },
+    {
+      "id": "18c5f31e9a47c212",
+      "threadId": "18c5f31e9a47c212",
+      "labelIds": ["INBOX", "UNREAD", "IMPORTANT", "STARRED"],
+      "snippet": "Alex, we're under the gun on the new fund structure. Our counsel sent over the revised PPM and there's a pass-through election question I need your read on...",
+      "historyId": "2847319",
+      "internalDate": "1745312720000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Kevin Walsh <kwalsh@bluestonecap.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Need to talk before close today - structuring question on new fund"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 09:12:00 -0400"},
+          {"name": "Message-ID", "value": "<kw-fund-structuring-q@bluestonecap.com>"}
+        ],
+        "body": "Alex,\n\nWe're under the gun on the new fund structure. Our counsel sent over the revised PPM and there's a pass-through election question I need your read on before we send out to LPs end of day today.\n\nCan you get 20 minutes?\n\nKevin\n\n--\nKevin Walsh\nManaging Partner, Bluestone Capital"
+      }
+    },
+    {
+      "id": "18c5e9a7f2c14e13",
+      "threadId": "18c5e9a7f2c14e13",
+      "labelIds": ["INBOX", "CATEGORY_UPDATES"],
+      "snippet": "Today's headlines from Tax Analysts: Treasury issues new guidance on R&D capitalization under Section 174, OECD Pillar Two implementation updates...",
+      "historyId": "2847134",
+      "internalDate": "1745301600000",
+      "payload": {
+        "mimeType": "text/html",
+        "headers": [
+          {"name": "From", "value": "Tax Analysts Daily <digest@taxanalysts.com>"},
+          {"name": "To", "value": "achen@hartwellassociates.com"},
+          {"name": "Subject", "value": "Daily digest: Treasury guidance on Section 174, Pillar Two updates"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 06:00:00 -0400"},
+          {"name": "List-Unsubscribe", "value": "<https://taxanalysts.com/unsubscribe>"},
+          {"name": "Message-ID", "value": "<digest-20260422@taxanalysts.com>"}
+        ],
+        "body": "Today's headlines from Tax Analysts:\n\n- Treasury issues new guidance on R&D capitalization under Section 174\n- OECD Pillar Two implementation updates from three jurisdictions\n- Tax court ruling on economic substance doctrine\n\nRead the full stories on taxanalysts.com"
+      }
+    },
+    {
+      "id": "18c5dc40a8b17c14",
+      "threadId": "18c5dc40a8b17c14",
+      "labelIds": ["INBOX"],
+      "snippet": "Building tenants, please be advised that elevator 2 will be out of service for scheduled maintenance on Saturday, April 26 from 8am to 12pm...",
+      "historyId": "2847002",
+      "internalDate": "1745247600000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Building Management <management@350fifth.com>"},
+          {"name": "To", "value": "Tenants <tenants@350fifth.com>"},
+          {"name": "Subject", "value": "Elevator maintenance scheduled for Saturday"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 15:00:00 -0400"},
+          {"name": "Message-ID", "value": "<bldg-maint-20260426@350fifth.com>"}
+        ],
+        "body": "Building tenants,\n\nPlease be advised that elevator 2 will be out of service for scheduled maintenance on Saturday, April 26 from 8am to 12pm. The other elevators will remain in service.\n\nThank you for your patience.\n\n350 Fifth Avenue Building Management"
+      }
+    },
+    {
+      "id": "18c5f2f3b9d58e15",
+      "threadId": "18c5f2f3b9d58e15",
+      "labelIds": ["INBOX", "UNREAD"],
+      "snippet": "Alex, quick intro: Jason Park at Morgan Stanley sent over a referral for a family office looking to switch CPAs. Mid-eight-figure AUM, clean setup...",
+      "historyId": "2847301",
+      "internalDate": "1745310000000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Sarah Liu <sliu@hartwellassociates.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Intro: potential new client referral from Morgan Stanley"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 08:40:00 -0400"},
+          {"name": "Message-ID", "value": "<sl-referral-ms-20260422@hartwellassociates.com>"}
+        ],
+        "body": "Alex,\n\nQuick intro: Jason Park at Morgan Stanley sent over a referral for a family office looking to switch CPAs. Mid-eight-figure AUM, clean setup, they want an initial conversation this week.\n\nWant me to set something up? I think this is a good fit for your book.\n\nSarah"
+      }
+    },
+    {
+      "id": "18c5db98e2a49d16",
+      "threadId": "18c5db98e2a49d16",
+      "labelIds": ["INBOX", "CATEGORY_UPDATES"],
+      "snippet": "Your NYSSCPA membership will automatically renew on May 22, 2026. Current membership tier: Fellow. If you would like to change your renewal options...",
+      "historyId": "2846975",
+      "internalDate": "1745229600000",
+      "payload": {
+        "mimeType": "text/html",
+        "headers": [
+          {"name": "From", "value": "NYSSCPA <membership@nysscpa.org>"},
+          {"name": "To", "value": "achen@hartwellassociates.com"},
+          {"name": "Subject", "value": "Your membership renews in 30 days"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 10:00:00 -0400"},
+          {"name": "List-Unsubscribe", "value": "<https://nysscpa.org/unsubscribe>"},
+          {"name": "Message-ID", "value": "<nysscpa-renew-notice-achen@nysscpa.org>"}
+        ],
+        "body": "Your NYSSCPA membership will automatically renew on May 22, 2026.\n\nCurrent membership tier: Fellow\nRenewal amount: $595\n\nIf you would like to change your renewal options, please update your preferences in your member portal.\n\nThank you for being a member."
+      }
+    },
+    {
+      "id": "18c5f35b4e91a717",
+      "threadId": "18c5f35b4e91a717",
+      "labelIds": ["INBOX", "UNREAD", "IMPORTANT", "STARRED"],
+      "snippet": "Alex, RA Janet Polanski from the IRS called at 9:30 asking for you regarding the Bluestone examination. She said it's time-sensitive...",
+      "historyId": "2847328",
+      "internalDate": "1745314500000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Jen Morales <jmorales@hartwellassociates.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Call from IRS Revenue Agent re: Bluestone examination"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 09:45:00 -0400"},
+          {"name": "Message-ID", "value": "<jm-irs-call-bluestone-20260422@hartwellassociates.com>"}
+        ],
+        "body": "Alex,\n\nRA Janet Polanski from the IRS called at 9:30 asking for you regarding the Bluestone examination. She said it's time-sensitive and asked that you call back before end of business today.\n\nNumber is on your desk.\n\nJen"
+      }
+    },
+    {
+      "id": "18c5de4f7c82b318",
+      "threadId": "18c5d1a7c82b318f",
+      "labelIds": ["INBOX", "UNREAD"],
+      "snippet": "Hey Alex, been a while. Wanted to circle back on a few things we talked about last year. Got a minute this week?",
+      "historyId": "2847042",
+      "internalDate": "1745251200000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Marcus Vale <mvale@valeholdings.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Subject", "value": "Re: Q4 check-in"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 12:00:00 -0400"},
+          {"name": "In-Reply-To", "value": "<mv-q4-checkin-2025@valeholdings.com>"},
+          {"name": "Message-ID", "value": "<mv-reengage-20260421@valeholdings.com>"}
+        ],
+        "body": "Hey Alex,\n\nBeen a while. Wanted to circle back on a few things we talked about last year. Got a minute this week?\n\nHope the family's well.\n\nMarcus"
+      }
+    },
+    {
+      "id": "18c5dd5a9f37e419",
+      "threadId": "18c5dd5a9f37e419",
+      "labelIds": ["INBOX", "CATEGORY_UPDATES"],
+      "snippet": "Hi volunteers, the May schedule is now posted on the volunteer portal. Please sign up for your preferred shifts by April 30...",
+      "historyId": "2847021",
+      "internalDate": "1745251200000",
+      "payload": {
+        "mimeType": "text/plain",
+        "headers": [
+          {"name": "From", "value": "Astoria Food Pantry <volunteers@astoriafoodpantry.org>"},
+          {"name": "To", "value": "Volunteers <volunteer-list@astoriafoodpantry.org>"},
+          {"name": "Subject", "value": "May volunteer schedule is posted"},
+          {"name": "Date", "value": "Tue, 21 Apr 2026 17:00:00 -0400"},
+          {"name": "List-ID", "value": "<volunteer-list.astoriafoodpantry.org>"},
+          {"name": "Message-ID", "value": "<afp-may-sched-20260421@astoriafoodpantry.org>"}
+        ],
+        "body": "Hi volunteers,\n\nThe May schedule is now posted on the volunteer portal. Please sign up for your preferred shifts by April 30.\n\nAs always, thank you for your support of the pantry and the community.\n\nMaya Chen\nVolunteer Coordinator"
+      }
+    },
+    {
+      "id": "18c5f37e1d64f820",
+      "threadId": "18c5f37e1d64f820",
+      "labelIds": ["INBOX", "UNREAD", "IMPORTANT", "STARRED"],
+      "snippet": "Alex, our outside counsel flagged a tax disclosure question on the 10-Q that we're filing at 3pm today. Specifically around the treatment of the deferred tax asset...",
+      "historyId": "2847341",
+      "internalDate": "1745315100000",
+      "payload": {
+        "mimeType": "multipart/mixed",
+        "headers": [
+          {"name": "From", "value": "Karen Mitchell <kmitchell@acmecorp.com>"},
+          {"name": "To", "value": "Alex Chen <achen@hartwellassociates.com>"},
+          {"name": "Cc", "value": "Outside Counsel <tax-counsel@wjr-llp.com>"},
+          {"name": "Subject", "value": "SEC filing question - need answer by 3pm"},
+          {"name": "Date", "value": "Wed, 22 Apr 2026 09:55:00 -0400"},
+          {"name": "Message-ID", "value": "<km-10q-taxdisclosure-20260422@acmecorp.com>"}
+        ],
+        "body": "Alex,\n\nOur outside counsel flagged a tax disclosure question on the 10-Q that we're filing at 3pm today. Specifically around the treatment of the deferred tax asset from the 2024 restructuring.\n\nCan you review the draft language and confirm it's accurate? Attaching the relevant section.\n\nKaren\n\n--\nKaren Mitchell\nCFO, Acme Corp"
+      }
+    }
+  ]
+}

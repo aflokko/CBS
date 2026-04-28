@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inbox</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; font-family: 'Google Sans', Roboto, Arial, sans-serif; color: #202124; background: #f6f8fc; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* Top bar */
+  .topbar {
+    display: flex; align-items: center; gap: 16px;
+    padding: 8px 16px; height: 64px; background: #f6f8fc;
+    border-bottom: 1px solid transparent;
+  }
+  .topbar .menu-btn {
+    background: none; border: none; font-size: 22px; padding: 8px; border-radius: 50%;
+  }
+  .topbar .menu-btn:hover { background: #e8eaed; }
+  .logo { display: flex; align-items: center; gap: 10px; width: 200px; }
+  .logo-mark {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: linear-gradient(135deg, #4285f4, #34a853 45%, #fbbc05 70%, #ea4335);
+  }
+  .logo-text { font-size: 20px; color: #5f6368; letter-spacing: 0.2px; }
+  .search {
+    flex: 1; max-width: 720px; display: flex; align-items: center;
+    background: #eaf1fb; border-radius: 8px; padding: 0 12px; height: 48px;
+  }
+  .search:focus-within { background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+  .search input {
+    flex: 1; background: transparent; border: none; outline: none; font-size: 16px; padding: 0 12px;
+  }
+  .search .icon { font-size: 20px; color: #5f6368; }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: #1a73e8; color: #fff;
+    display: grid; place-items: center; font-weight: 600;
+  }
+
+  /* Main layout */
+  .main { display: flex; height: calc(100% - 64px); }
+
+  /* Sidebar */
+  .sidebar { width: 256px; padding: 8px; flex-shrink: 0; }
+  .compose {
+    display: flex; align-items: center; gap: 12px;
+    background: #c2e7ff; color: #001d35; border: none;
+    border-radius: 16px; padding: 14px 20px; font-size: 14px; font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-bottom: 16px;
+  }
+  .compose:hover { background: #b3ddf8; box-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+  .nav-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 12px 0 26px; height: 32px; border-radius: 0 16px 16px 0;
+    color: #202124; font-size: 14px; cursor: pointer; user-select: none;
+  }
+  .nav-item:hover { background: #eaebef; }
+  .nav-item.active { background: #d3e3fd; font-weight: 700; color: #001d35; }
+  .nav-item .count { margin-left: auto; font-size: 12px; color: #5f6368; }
+  .nav-item.active .count { color: #001d35; }
+  .nav-icon { font-size: 18px; width: 20px; text-align: center; }
+
+  /* List pane */
+  .list-pane { flex: 1; background: #fff; border-radius: 16px 0 0 0; overflow: hidden; display: flex; flex-direction: column; margin-left: 4px; }
+  .list-toolbar {
+    display: flex; align-items: center; gap: 4px; padding: 4px 16px; height: 48px;
+    border-bottom: 1px solid #f1f3f4;
+  }
+  .tool-btn {
+    background: none; border: none; padding: 8px; border-radius: 50%;
+    color: #5f6368; font-size: 16px; width: 36px; height: 36px;
+  }
+  .tool-btn:hover { background: #e8eaed; }
+  .list-tabs { display: flex; border-bottom: 1px solid #f1f3f4; }
+  .list-tab {
+    padding: 12px 24px 10px; display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: #5f6368; cursor: pointer; border-bottom: 3px solid transparent;
+    min-width: 220px;
+  }
+  .list-tab.active { color: #1a73e8; border-bottom-color: #1a73e8; font-weight: 600; }
+  .list-tab .tab-icon { font-size: 18px; }
+
+  .msg-list { flex: 1; overflow-y: auto; }
+  .msg-row {
+    display: grid;
+    grid-template-columns: 40px 40px 220px 1fr 100px;
+    align-items: center; gap: 12px;
+    padding: 0 16px; height: 40px;
+    border-bottom: 1px solid #f1f3f4; cursor: pointer;
+    font-size: 14px; color: #202124;
+  }
+  .msg-row:hover { box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px rgba(60,64,67,0.2); z-index: 1; }
+  .msg-row.unread { background: #f2f6fc; font-weight: 700; }
+  .msg-row.unread .snippet { color: #5f6368; font-weight: 400; }
+  .msg-row .star { font-size: 16px; color: #dadce0; text-align: center; user-select: none; }
+  .msg-row .star.on { color: #f4b400; }
+  .msg-row .checkbox { width: 18px; height: 18px; border: 2px solid #5f6368; border-radius: 2px; justify-self: center; }
+  .msg-row .sender { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msg-row .content { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .msg-row .subject { margin-right: 8px; }
+  .msg-row .snippet { color: #5f6368; font-weight: 400; }
+  .msg-row .date { font-size: 12px; color: #5f6368; text-align: right; white-space: nowrap; }
+  .msg-row.unread .date { color: #202124; font-weight: 700; }
+  .badge {
+    display: inline-block; padding: 1px 6px; border-radius: 4px;
+    font-size: 11px; font-weight: 600; margin-right: 6px;
+    border: 1px solid #dadce0; color: #5f6368; background: #fff;
+  }
+  .badge.important { border-color: #f4b400; color: #b06000; background: #fff8e1; }
+  .badge.starred { border-color: #f4b400; color: #b06000; background: #fff8e1; }
+
+  /* Reader view */
+  .reader {
+    flex: 1; background: #fff; border-radius: 16px 0 0 0; overflow-y: auto;
+    padding: 16px 24px 48px; margin-left: 4px; display: none;
+  }
+  .reader.open { display: block; }
+  .reader .back-row { display: flex; align-items: center; gap: 4px; margin-bottom: 12px; }
+  .reader h1 {
+    font-size: 22px; font-weight: 400; margin: 16px 0 16px 56px; color: #202124;
+  }
+  .reader h1 .label-chip {
+    font-size: 12px; font-weight: 500; background: #e8f0fe; color: #1967d2;
+    border-radius: 4px; padding: 2px 6px; margin-left: 8px; vertical-align: 3px;
+  }
+  .msg-card {
+    display: grid; grid-template-columns: 40px 1fr auto; gap: 12px;
+    padding: 12px 0; border-top: 1px solid #f1f3f4;
+  }
+  .msg-card:first-of-type { border-top: none; }
+  .avatar-lg {
+    width: 40px; height: 40px; border-radius: 50%; color: #fff;
+    display: grid; place-items: center; font-weight: 600; font-size: 16px;
+  }
+  .msg-head { display: flex; flex-direction: column; }
+  .msg-head .from { font-size: 14px; font-weight: 600; }
+  .msg-head .from .email { color: #5f6368; font-weight: 400; font-size: 12px; margin-left: 6px; }
+  .msg-head .to { font-size: 12px; color: #5f6368; }
+  .msg-meta { font-size: 12px; color: #5f6368; text-align: right; white-space: nowrap; }
+  .msg-body {
+    grid-column: 2 / span 2; white-space: pre-wrap; font-size: 14px; line-height: 1.55;
+    margin-top: 12px; color: #202124;
+  }
+
+  .empty {
+    flex: 1; display: grid; place-items: center; color: #5f6368; font-size: 14px;
+  }
+  .loader {
+    padding: 32px; color: #5f6368; font-size: 14px;
+  }
+  .file-fallback {
+    margin: 32px auto; max-width: 520px; padding: 24px;
+    background: #fff; border: 1px solid #dadce0; border-radius: 12px;
+    text-align: center;
+  }
+  .file-fallback h3 { margin: 0 0 8px; font-weight: 500; }
+  .file-fallback p { color: #5f6368; font-size: 14px; line-height: 1.5; }
+  .file-fallback label {
+    display: inline-block; margin-top: 12px; padding: 10px 20px;
+    background: #1a73e8; color: #fff; border-radius: 8px; font-size: 14px; cursor: pointer;
+  }
+  .file-fallback input[type=file] { display: none; }
+  code { background: #f1f3f4; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <button class="menu-btn" title="Main menu">☰</button>
+    <div class="logo">
+      <div class="logo-mark"></div>
+      <div class="logo-text">Inbox</div>
+    </div>
+    <div class="search">
+      <span class="icon">🔍</span>
+      <input id="search" placeholder="Search mail" />
+    </div>
+    <div class="topbar-right">
+      <button class="menu-btn" title="Settings">⚙</button>
+      <div class="avatar" id="userAvatar">A</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <aside class="sidebar">
+      <button class="compose">✎ &nbsp;Compose</button>
+      <div class="nav-item active" data-folder="INBOX">
+        <span class="nav-icon">📥</span><span>Inbox</span><span class="count" id="inboxCount"></span>
+      </div>
+      <div class="nav-item" data-folder="STARRED">
+        <span class="nav-icon">★</span><span>Starred</span>
+      </div>
+      <div class="nav-item" data-folder="IMPORTANT">
+        <span class="nav-icon">🏷</span><span>Important</span>
+      </div>
+      <div class="nav-item" data-folder="SENT">
+        <span class="nav-icon">➤</span><span>Sent</span>
+      </div>
+      <div class="nav-item" data-folder="DRAFT">
+        <span class="nav-icon">📝</span><span>Drafts</span>
+      </div>
+      <div class="nav-item" data-folder="ALL">
+        <span class="nav-icon">✉</span><span>All mail</span>
+      </div>
+      <div class="nav-item" data-folder="SPAM">
+        <span class="nav-icon">⚠</span><span>Spam</span>
+      </div>
+      <div class="nav-item" data-folder="TRASH">
+        <span class="nav-icon">🗑</span><span>Trash</span>
+      </div>
+    </aside>
+
+    <section class="list-pane" id="listPane">
+      <div class="list-toolbar">
+        <button class="tool-btn" title="Select">☐</button>
+        <button class="tool-btn" title="Refresh" id="refreshBtn">↻</button>
+        <button class="tool-btn" title="More">⋮</button>
+      </div>
+      <div class="list-tabs">
+        <div class="list-tab active"><span class="tab-icon">📥</span>Primary</div>
+        <div class="list-tab"><span class="tab-icon">🏷</span>Promotions</div>
+        <div class="list-tab"><span class="tab-icon">👥</span>Social</div>
+      </div>
+      <div class="msg-list" id="msgList">
+        <div class="loader">Loading inbox.json…</div>
+      </div>
+    </section>
+
+    <section class="reader" id="reader"></section>
+  </div>
+
+<script>
+const AVATAR_COLORS = ['#1a73e8','#d93025','#1e8e3e','#e37400','#9334e6','#12b5cb','#c5221f','#188038','#b06000','#7627bb'];
+const state = {
+  messages: [],
+  account: '',
+  selectedId: null,
+  folder: 'INBOX',
+};
+
+function avatarFor(name) {
+  const initial = (name || '?').trim().charAt(0).toUpperCase();
+  let hash = 0;
+  for (const c of (name || '')) hash = (hash * 31 + c.charCodeAt(0)) >>> 0;
+  return { initial, color: AVATAR_COLORS[hash % AVATAR_COLORS.length] };
+}
+
+function header(msg, name) {
+  const h = msg.payload?.headers?.find(h => h.name.toLowerCase() === name.toLowerCase());
+  return h ? h.value : '';
+}
+
+function parseAddress(raw) {
+  if (!raw) return { name: '', email: '' };
+  const m = raw.match(/^\s*(.*?)\s*<(.+?)>\s*$/);
+  if (m) return { name: m[1].replace(/^"|"$/g, ''), email: m[2] };
+  return { name: raw.split('@')[0], email: raw };
+}
+
+function formatDate(ms) {
+  const d = new Date(Number(ms));
+  const now = new Date();
+  const sameDay = d.toDateString() === now.toDateString();
+  if (sameDay) return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const sameYear = d.getFullYear() === now.getFullYear();
+  return d.toLocaleDateString([], sameYear ? { month: 'short', day: 'numeric' } : { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function formatDateLong(ms) {
+  return new Date(Number(ms)).toLocaleString([], {
+    weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+    hour: 'numeric', minute: '2-digit'
+  });
+}
+
+function isUnread(m) { return m.labelIds?.includes('UNREAD'); }
+function isStarred(m) { return m.labelIds?.includes('STARRED'); }
+function isImportant(m) { return m.labelIds?.includes('IMPORTANT'); }
+
+function filteredMessages() {
+  let list = state.messages;
+  if (state.folder === 'STARRED') list = list.filter(isStarred);
+  else if (state.folder === 'IMPORTANT') list = list.filter(isImportant);
+  else if (state.folder === 'INBOX') list = list.filter(m => m.labelIds?.includes('INBOX'));
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  if (q) {
+    list = list.filter(m => {
+      const blob = [header(m,'From'), header(m,'Subject'), m.snippet, m.payload?.body].join(' ').toLowerCase();
+      return blob.includes(q);
+    });
+  }
+  return list.slice().sort((a,b) => Number(b.internalDate) - Number(a.internalDate));
+}
+
+function renderList() {
+  const list = filteredMessages();
+  const container = document.getElementById('msgList');
+  document.getElementById('inboxCount').textContent = state.messages.filter(m => isUnread(m) && m.labelIds?.includes('INBOX')).length || '';
+  if (!list.length) {
+    container.innerHTML = '<div class="loader">No messages.</div>';
+    return;
+  }
+  container.innerHTML = list.map(m => {
+    const from = parseAddress(header(m, 'From'));
+    const subject = header(m, 'Subject') || '(no subject)';
+    const unread = isUnread(m) ? 'unread' : '';
+    const starClass = isStarred(m) ? 'on' : '';
+    const importantBadge = isImportant(m) && !isStarred(m) ? '<span class="badge important">Important</span>' : '';
+    return `
+      <div class="msg-row ${unread}" data-id="${m.id}">
+        <div class="checkbox"></div>
+        <div class="star ${starClass}" data-star="${m.id}">★</div>
+        <div class="sender">${escape(from.name || from.email)}</div>
+        <div class="content">${importantBadge}<span class="subject">${escape(subject)}</span><span class="snippet">— ${escape(m.snippet || '')}</span></div>
+        <div class="date">${formatDate(m.internalDate)}</div>
+      </div>
+    `;
+  }).join('');
+  container.querySelectorAll('.msg-row').forEach(row => {
+    row.addEventListener('click', e => {
+      if (e.target.dataset.star) return;
+      openMessage(row.dataset.id);
+    });
+  });
+  container.querySelectorAll('.star').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = el.dataset.star;
+      const m = state.messages.find(x => x.id === id);
+      if (!m) return;
+      if (isStarred(m)) m.labelIds = m.labelIds.filter(l => l !== 'STARRED');
+      else m.labelIds = [...(m.labelIds||[]), 'STARRED'];
+      renderList();
+    });
+  });
+}
+
+function openMessage(id) {
+  const m = state.messages.find(x => x.id === id);
+  if (!m) return;
+  m.labelIds = (m.labelIds || []).filter(l => l !== 'UNREAD');
+  state.selectedId = id;
+  const from = parseAddress(header(m, 'From'));
+  const to = header(m, 'To');
+  const cc = header(m, 'Cc');
+  const subject = header(m, 'Subject') || '(no subject)';
+  const av = avatarFor(from.name || from.email);
+  const body = m.payload?.body || '';
+  const isHtml = (m.payload?.mimeType || '').includes('html');
+  const bodyHtml = isHtml ? body : escape(body);
+
+  const importantChip = isImportant(m) ? '<span class="label-chip">Important</span>' : '';
+
+  document.getElementById('reader').innerHTML = `
+    <div class="back-row">
+      <button class="tool-btn" id="backBtn" title="Back">←</button>
+      <button class="tool-btn" title="Archive">📦</button>
+      <button class="tool-btn" title="Report spam">⚠</button>
+      <button class="tool-btn" title="Delete">🗑</button>
+    </div>
+    <h1>${escape(subject)}${importantChip}</h1>
+    <div class="msg-card">
+      <div class="avatar-lg" style="background:${av.color}">${av.initial}</div>
+      <div class="msg-head">
+        <div class="from">${escape(from.name)}<span class="email">&lt;${escape(from.email)}&gt;</span></div>
+        <div class="to">to ${escape(parseAddress(to).name || to)}${cc ? ', cc ' + escape(cc) : ''}</div>
+      </div>
+      <div class="msg-meta">${formatDateLong(m.internalDate)}</div>
+      <div class="msg-body">${bodyHtml}</div>
+    </div>
+  `;
+  document.getElementById('reader').classList.add('open');
+  document.getElementById('listPane').style.display = 'none';
+  document.getElementById('backBtn').addEventListener('click', closeMessage);
+  renderList();
+}
+
+function closeMessage() {
+  state.selectedId = null;
+  document.getElementById('reader').classList.remove('open');
+  document.getElementById('listPane').style.display = 'flex';
+}
+
+function escape(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function loadData(data) {
+  state.messages = data.messages || [];
+  state.account = data.account || '';
+  const initial = (state.account || 'A').charAt(0).toUpperCase();
+  document.getElementById('userAvatar').textContent = initial;
+  renderList();
+}
+
+async function init() {
+  try {
+    const res = await fetch('inbox.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    loadData(data);
+  } catch (err) {
+    showFallback(err);
+  }
+}
+
+function showFallback(err) {
+  document.getElementById('msgList').innerHTML = `
+    <div class="file-fallback">
+      <h3>Could not auto-load inbox.json</h3>
+      <p>Browsers block <code>fetch()</code> from <code>file://</code>. Either serve the folder (e.g. <code>python3 -m http.server</code>) or pick the file below.</p>
+      <label>
+        Choose inbox.json
+        <input type="file" id="filePicker" accept="application/json,.json" />
+      </label>
+    </div>
+  `;
+  document.getElementById('filePicker').addEventListener('change', async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const text = await file.text();
+    loadData(JSON.parse(text));
+  });
+}
+
+document.getElementById('search').addEventListener('input', renderList);
+document.getElementById('refreshBtn').addEventListener('click', init);
+document.querySelectorAll('.nav-item').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+    state.folder = el.dataset.folder;
+    closeMessage();
+    renderList();
+  });
+});
+
+init();
+</script>
+</body>
+</html>
