@@ -241,14 +241,195 @@
   -->
   <script id="triageData" type="application/json">
 {
-  "triage_date": "",
-  "generated_at": "",
-  "total_count": 0,
-  "urgent_count": 0,
-  "respond_today_count": 0,
-  "fyi_count": 0,
-  "archive_count": 0,
-  "emails": []
+  "triage_date": "Wednesday, April 22, 2026",
+  "generated_at": "Apr 22, 2026",
+  "total_count": 20,
+  "urgent_count": 7,
+  "respond_today_count": 3,
+  "fyi_count": 2,
+  "archive_count": 8,
+  "emails": [
+    {
+      "email_id": "18c5f37e1d64f820",
+      "from_name": "Karen Mitchell",
+      "from_email": "kmitchell@acmecorp.com",
+      "subject": "SEC filing question - need answer by 3pm",
+      "timestamp": "Today 9:55 AM",
+      "category": "URGENT",
+      "reason": "Key account Acme Corp with a hard 3pm SEC filing deadline today — confirmed deadline-adjacent issue rule fires."
+    },
+    {
+      "email_id": "18c5f31e9a47c212",
+      "from_name": "Kevin Walsh",
+      "from_email": "kwalsh@bluestonecap.com",
+      "subject": "Need to talk before close today - structuring question on new fund",
+      "timestamp": "Today 9:12 AM",
+      "category": "URGENT",
+      "reason": "Key account Bluestone Capital with a confirmed end-of-day deadline for LP distribution — deadline-adjacent issue rule fires."
+    },
+    {
+      "email_id": "18c5f29b7d3e4a02",
+      "from_name": "Maria Fuentes",
+      "from_email": "mfuentes@acmecorp.com",
+      "subject": "Wire transfer for Q1 estimated payment didn't go through",
+      "timestamp": "Today 7:42 AM",
+      "category": "URGENT",
+      "reason": "Wire transfer failure on key account Acme Corp with a Friday payment deadline — wire/payment issue on key account rule fires."
+    },
+    {
+      "email_id": "18c5f35b4e91a717",
+      "from_name": "Jen Morales",
+      "from_email": "jmorales@hartwellassociates.com",
+      "subject": "Call from IRS Revenue Agent re: Bluestone examination",
+      "timestamp": "Today 9:45 AM",
+      "category": "URGENT",
+      "reason": "Jen Morales relaying an IRS Revenue Agent callback request — Jen's forwarding rule fires (IRS + key account Bluestone reinforce it)."
+    },
+    {
+      "email_id": "18c5f31a5d92e605",
+      "from_name": "Jen Morales",
+      "from_email": "jmorales@hartwellassociates.com",
+      "subject": "fwd: documents",
+      "timestamp": "Today 9:03 AM",
+      "category": "URGENT",
+      "reason": "Jen Morales forwarded this — minimal body content is her normal forwarding style, not a signal of low importance; anything Jen sends is URGENT."
+    },
+    {
+      "email_id": "18c5f2a4b1e09d01",
+      "from_name": "David Okafor",
+      "from_email": "dokafor@hartwellassociates.com",
+      "subject": "coffee this week?",
+      "timestamp": "Today 8:14 AM",
+      "category": "URGENT",
+      "reason": "David Okafor is the managing partner — the rule states anything from David is URGENT regardless of subject, body, or tone."
+    },
+    {
+      "email_id": "18c5de4f7c82b318",
+      "from_name": "Marcus Vale",
+      "from_email": "mvale@valeholdings.com",
+      "subject": "Re: Q4 check-in",
+      "timestamp": "Apr 21, 12:00 PM",
+      "category": "URGENT",
+      "reason": "Silent-thread re-engagement: client signals a long absence with \"been a while\" and \"circle back on things we talked about last year\" — that rule fires."
+    },
+    {
+      "email_id": "18c5f2c8e6b58a10",
+      "from_name": "Richard Hargrove",
+      "from_email": "rhargrove@hargrovefamily.com",
+      "subject": "Question on the Q1 distribution schedule",
+      "timestamp": "Today 8:20 AM",
+      "category": "RESPOND TODAY",
+      "reason": "Substantive question from a key account client (Hargrove Family Office) who asks for a response ideally today — correspondence from known key-account contact rule fires."
+    },
+    {
+      "email_id": "18c5f2e1c4a07f06",
+      "from_name": "Priya Shah",
+      "from_email": "pshah@hartwellassociates.com",
+      "subject": "Draft memo for Goldstein K-1 - ready for your review",
+      "timestamp": "Today 8:55 AM",
+      "category": "RESPOND TODAY",
+      "reason": "Review request from associate Priya Shah with a filing deadline next Wednesday — respond-today rule for Priya's review requests fires."
+    },
+    {
+      "email_id": "18c5f2f3b9d58e15",
+      "from_name": "Sarah Liu",
+      "from_email": "sliu@hartwellassociates.com",
+      "subject": "Intro: potential new client referral from Morgan Stanley",
+      "timestamp": "Today 8:40 AM",
+      "category": "RESPOND TODAY",
+      "reason": "Legitimate new client referral (mid-eight-figure family office seeking initial conversation this week) — new client inquiry rule fires."
+    },
+    {
+      "email_id": "18c5e1d9f7c84c04",
+      "from_name": "Hartwell Internal",
+      "from_email": "internal@hartwellassociates.com",
+      "subject": "April firm newsletter: new hires, Q1 results, summer outing",
+      "timestamp": "Apr 21, 4:30 PM",
+      "category": "FYI",
+      "reason": "Internal firm newsletter — FYI rule for internal firm updates and announcements fires, no action needed."
+    },
+    {
+      "email_id": "18c5e9a7f2c14e13",
+      "from_name": "Tax Analysts Daily",
+      "from_email": "digest@taxanalysts.com",
+      "subject": "Daily digest: Treasury guidance on Section 174, Pillar Two updates",
+      "timestamp": "Today 6:00 AM",
+      "category": "FYI",
+      "reason": "Industry news digest — FYI rule for industry news requiring no action fires; this is not IRS correspondence despite the tax content."
+    },
+    {
+      "email_id": "18c5e8f3c2a71b03",
+      "from_name": "Linda Park",
+      "from_email": "lpark@hargrovefamily.com",
+      "subject": "Lunch next month with the Hargrove team?",
+      "timestamp": "Today 9:30 AM",
+      "category": "ARCHIVE",
+      "reason": "Scheduling request from a client's assistant — routing rule says calendar logistics go to Jen even when the client is a key account like Hargrove."
+    },
+    {
+      "email_id": "18c5dbe2f1b43907",
+      "from_name": "NYC Youth Arts Coalition",
+      "from_email": "board@nycyoutharts.org",
+      "subject": "Board meeting reminder: this Thursday, 6pm",
+      "timestamp": "Apr 21, 2:00 PM",
+      "category": "ARCHIVE",
+      "reason": "Nonprofit board matter (NYC Youth Arts Coalition) — the rules explicitly classify these as personal commitments, not practice-urgent."
+    },
+    {
+      "email_id": "18c5e9a2b8c13d08",
+      "from_name": "LinkedIn",
+      "from_email": "notifications@linkedin.com",
+      "subject": "You have 3 new connection requests",
+      "timestamp": "Today 6:00 AM",
+      "category": "ARCHIVE",
+      "reason": "LinkedIn notification — archive rule for promotional email and LinkedIn notifications fires."
+    },
+    {
+      "email_id": "18c5e6d4a9f27e09",
+      "from_name": "ClioVault Notifications",
+      "from_email": "no-reply@cliovault.com",
+      "subject": "You've been added to a matter: Acme Corp - FY2026 Tax Provision",
+      "timestamp": "Today 5:30 AM",
+      "category": "ARCHIVE",
+      "reason": "Automated ClioVault matter notification — the rules explicitly state these are noise for Alex even when they reference a key account, as Priya handles them."
+    },
+    {
+      "email_id": "18c5dd71e3a49b11",
+      "from_name": "AICPA Conferences",
+      "from_email": "events@aicpa-conferences.org",
+      "subject": "Early bird pricing ends Friday: Tax Strategies Summit 2026",
+      "timestamp": "Apr 21, 11:15 AM",
+      "category": "ARCHIVE",
+      "reason": "Conference marketing email — archive rule for promotional email and conference marketing fires."
+    },
+    {
+      "email_id": "18c5dc40a8b17c14",
+      "from_name": "Building Management",
+      "from_email": "management@350fifth.com",
+      "subject": "Elevator maintenance scheduled for Saturday",
+      "timestamp": "Apr 21, 3:00 PM",
+      "category": "ARCHIVE",
+      "reason": "Building maintenance notice — archive rule for non-practice building issues fires."
+    },
+    {
+      "email_id": "18c5db98e2a49d16",
+      "from_name": "NYSSCPA",
+      "from_email": "membership@nysscpa.org",
+      "subject": "Your membership renews in 30 days",
+      "timestamp": "Apr 21, 10:00 AM",
+      "category": "ARCHIVE",
+      "reason": "Automated membership renewal notice — archive rule for newsletter-style notifications from official-sounding organizations fires."
+    },
+    {
+      "email_id": "18c5dd5a9f37e419",
+      "from_name": "Astoria Food Pantry",
+      "from_email": "volunteers@astoriafoodpantry.org",
+      "subject": "May volunteer schedule is posted",
+      "timestamp": "Apr 21, 5:00 PM",
+      "category": "ARCHIVE",
+      "reason": "Nonprofit volunteer coordination (Astoria Food Pantry) — the rules explicitly classify nonprofit personal commitments as archive."
+    }
+  ]
 }
   </script>
 
